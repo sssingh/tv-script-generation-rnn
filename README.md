@@ -209,6 +209,7 @@ With above experimentation we finally settled on below hyperparameters...
 
 - Trained the model with above hyperparameters for 10 epochs, achieved a loss ~2.5 and saved/serialized the model as `trained_rnn.pt`
 
+```python
 Training for 10 epoch(s)...
 Epoch:    1/10    Loss: 5.568603610992431
 Epoch:    2/10    Loss: 4.7756297567817185
@@ -221,6 +222,7 @@ Epoch:    8/10    Loss: 2.948043690559297
 Epoch:    9/10    Loss: 2.709813594689795
 Epoch:   10/10    Loss: 2.509170540952323
 Model Trained and Saved
+```
 
 ### Test the Network
 - Loaded the serialized model and pre-processed data and then generated a _fake_script of 400 words shown below...
@@ -239,7 +241,7 @@ Experiment with different prime-word and different script length generates some 
     - `torch`
 2. Download `tv_script_generation.ipynb` jupyter notebook from this repo
 3. In order to train the models, its recommended to execute the notebook one cell at a time as some steps might take a while to execute. If a GPU is available (recommended) then it'll use it automatically else it'll fall back to CPU. 
-4. A fully trained model `trained_rnn.pt` and pre-processed data (`preprocess.p`) trained on a small subset of Seinfeld script can be downloaded from [here](https://drive.google.com/file/d/1mwyAofz77zb7PIoWlGXArMlLpUrWpWDM/view?usp=sharing) and here[](https://drive.google.com/file/d/1al45-FofQCpnW_fK_vD9pmdK8xqVhKxV/view?usp=sharing) respectively.
+4. A fully trained model `trained_rnn.pt` and pre-processed data (`preprocess.p`) trained on a small subset of Seinfeld script can be downloaded from [here](https://drive.google.com/file/d/1mwyAofz77zb7PIoWlGXArMlLpUrWpWDM/view?usp=sharing) and [here](https://drive.google.com/file/d/1al45-FofQCpnW_fK_vD9pmdK8xqVhKxV/view?usp=sharing) respectively.
 5. Note that even though we have used Seinfeld script to train and generate the text, you can use any other text corpus (tv/film script, books) to re-train the model and then generate script. You will need to pre-process the data and serialize the data as `preprocess.p` before training the model though. 
 6. Once we have model and pre-processed data, we can start generating the script. The network needs to start with a single prime-word and repeat its predictions until it reaches a set length. We'll be using the `generate` function to do this. It takes a word id to start with, `prime_id`, and generates a set length of text, `predict_len`. Example code for script generation is shown in below code snippet...
 
