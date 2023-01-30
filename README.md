@@ -1,21 +1,24 @@
-# TV Script Generation using Recurrent Neural Network (RNN)
+# TV Script Generation using Recurrent Neural Network
+Build and train a Recurrent Neural Network (RNN) based Neural Network to generate fake TV/film script
 
-<img src=assets/title_image.png width=800>
+<img src=assets/title_image.png width=800 height=400>
 
-### Train an RNN based Neural Network to generate fake TV/film script 
-
+## Features
+⚡Natural Language Processing (NLP)  
+⚡Text Generation  
+⚡Recurrent Neural Network (RNN)  
+⚡Gated Recurrent Unit (GRU)  
+⚡PyTorch
 
 ## Table of Contents
-
 - [Introduction](#introduction) 
 - [Objective](#objective)
 - [Dataset](#dataset)
 - [Solution Approach](#solution-approach)
 - [How To Use](#how-to-use)
-- [Credits](#credits)
 - [License](#license)
-- [Author Info](#author-info)
-
+- [Get in touch](#get-in-touch)
+- [Credits](#credits)
 
 ## Introduction
 This project will build and train an RNN based neural network to automatically generate our own [Seinfeld](https://en.wikipedia.org/wiki/Seinfeld) _fake_ TV script. We'll use a small subset of the Seinfeld TV sit-com's script from 9 seasons to train our network. The trained network will then generate a new but _fake_ TV script based on patterns it learned from the training data. RNNs are ideally suited for sequence problems such as these since they take advantage of the underlying structure of the data, namely, the order of the data points.
@@ -23,13 +26,10 @@ This project will build and train an RNN based neural network to automatically g
 ## Objective
 To build an RNN based Neural Network that'd accept a text corpus (TV/film script, book, etc.), learn from it, and then given a seed `prime-word,` it'd generate a _fake_ text snippet that'd look like if this generated text came from the original script/book. 
 
-
----
 ## Dataset
 - The dataset used in this project is a subset of the original [Seinfeld dataset](https://www.kaggle.com/thec03u5/seinfeld-chronicles#scripts.csv) on Kaggle.
 - The dataset is provided as part of this repo, and it's kept in `data/Seinfeld_Scripts.txt` as a plain text file.
 
----
 ## Solution Approach
 ### Load and Explore Data
 - load the Seinfeld TV script `Seinfeld_Scripts.txt` as a text blob
@@ -233,7 +233,6 @@ We can easily see that the _fake_ generated script snippet came from the origina
 
 Experiment with different prime-word and different script lengths generates some engaging (and funny) text; give it a try!
 
----
 ## How To Use
 1. Ensure the below-listed packages are installed
     - `NumPy`
@@ -244,7 +243,6 @@ Experiment with different prime-word and different script lengths generates some
 4. A fully trained model `trained_rnn.pt` and preprocessed data (`preprocess.p`) trained on a small subset of Seinfeld script can be downloaded from [here](https://drive.google.com/file/d/1mwyAofz77zb7PIoWlGXArMlLpUrWpWDM/view?usp=sharing) and [here](https://drive.google.com/file/d/1al45-FofQCpnW_fK_vD9pmdK8xqVhKxV/view?usp=sharing) respectively.
 5. Note that even though we have used Seinfeld script to train and generate the text, you can use any other text corpus (tv/film script, books) to re-train the model and generate the script. You will need to preprocess the data and serialize the data as `preprocess.p` before training the model, though. 
 6. Once we have the model and preprocessed data, we can start generating the script. The network needs to start with a single prime word and repeat its predictions until it reaches a set length. We'll be using the `generate` function to do this. It takes a word id to start with, `prime_id,` and generates a set length of text, `predict_len.` Example code for script generation is shown in the below code snippet...
-
 
 ```python
     # Load the pre-processed data saved in preprocess.p 
@@ -261,44 +259,17 @@ Experiment with different prime-word and different script lengths generates some
     print(generated_script)
 ```
 
+## License
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 
----
+## Get in touch
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/sssingh)
+[![twitter](https://img.shields.io/badge/twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/_sssingh)
+[![website](https://img.shields.io/badge/website-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://datamatrix-ml.com/)
+
 ## Credits
 - Dataset used in this project is provided by [Udacity](https://www.udacity.com/)
 - Above dataset is a subset taken from Kaggle, [Seinfeld dataset](https://www.kaggle.com/thec03u5/seinfeld-chronicles#scripts.csv)
 - GRU, RNN diagrams courtesy [Daniel V. Godoy](https://github.com/dvgodoy)
 
----
-## License
-
-MIT License
-
-Copyright (c) [2021] [Sunil S. Singh]
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the software, and to permit persons to whom the software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
----
-
-## Author Info
-
-- Twitter - [@_sssingh](https://twitter.com/_sssingh)
-- Linkedin - [Sunil S. Singh](https://linkedin.com/in/sssingh)
-
-
----
+[Back To The Top](#TV-Script-Generation-using-Recurrent-Neural-Network)
