@@ -134,33 +134,33 @@ Couple of important things to note...
 ### Define The Network
 Since we deal with sequential data here, we'll use an RNN based neural network best suited for such a task. RNN is well suited for sequential data because the order in which the data element appears in sequences is critical. RNN cell keeps track of the cell state (`hidden` state) of *previous* `time-step` along with input from *current* `time-step` to produce an output (which is again input to the next time-step as the previous hidden state). A typical high-level structure of the RNN cell is shown below...
 
-![](assets/typical_rnn_cell.png)
+![]("https://github.com/sssingh/tv-script-generation-rnn/blob/master/assets/typical_rnn_cell.png?raw=true")
 
 A crucial point to note here is that even though two cells are shown one after the other in the right-side diagram, it's the same cell shown as _unrolled_ just for clarity. This is because the same cell consumes its own previous `hidden state` of the prior time step and the current time-step input and produces a `hidden state` for the next time step. So, for example, each word in a sentence (sequence) can be considered a time step, and they will be processed one at a time, and the output (the resulting hidden state) is fed to the next time step. In essence, it's a `loop-back` mechanism. This is the behavior of RNN cells that allows them to account for dependency among the input and extract `semantic` meaning out of them.
 
 Mathematically at time step `t,` the hidden output of RNN is computed as follows...
 
-![](assets/rnn_formula.png)
+![]("https://github.com/sssingh/tv-script-generation-rnn/blob/master/assets//rnn_formula.png?raw=true")
 
 As shown above, the `tanh` (Hyperbolic Tangent) function is used as the _activation_ function here. It's very typical of RNN networks to use `tanh` instead of the `ReLU` activation function used by other types of neural networks. This is done because `ReLU` has no upper bound; however, `tanh` maps the feature space to the interval (-1, 1). This ensures that, at every step of the sequence, the hidden state is always between -1 and 1. Given that we have only one linear layer to transform the hidden state, regardless of which step of the sequence it uses, it is convenient to have its values within a predictable range.
 
 An RNN cell structure at a lower level (neuron level) is shown below...
 
-![](assets/rnn_cell_internals.png)
+![]("https://github.com/sssingh/tv-script-generation-rnn/blob/master/assets/rnn_cell_internals.png?raw=true")
 
 The number of hidden neurons is the `hyperparameter` of the network, chosen to be 2 in the above diagram (hence two blue neurons in the hidden state section). The number of input neurons is automatically determined to be _exactly_ same as the number of hidden neurons because both transformed input and hidden state need to be added together; hence, their shape must match. But,  the _input_ features (words) _dimension_ could be anything. The input features dimension is another hyperparameter of the network. The above diagram shows a two-dimensional (x0 and x1) vector. In this project, we will use an `Embedding` layer that'd transform each word that we have encoded as _single_ unique number to its multi-dimensional vector representation.
 
 - In practice, the plain vanilla RNN shown above is hardly used nowadays, where equal importance is given to both the previous-hidden-state and the current input. What if the previous-hidden-state contains more information than the new-hidden-state or current-input adds more information than the previous-hidden-state? There is no mechanism in vanilla RNNs to assign weights (how much to keep or ignore) to previous-hidden-state, new-hidden-state, and current-input. The improved variants of RNN such as `LSTM` (Long Short Term Memory) or `GRU` (Gated Recurrent Unit) tackle these issues. In practice, an LSTM or GRU cell is used to build RNN based neural net. In this project, we will use the GRU cell because it is slightly lighter than the LSTM cell and trains a bit faster. If LSTM is used, we can get better results than what we are producing with GRU, but it might take much longer to train. A typical GRU cell structure is shown below...
 
-![](assets/gru_cell_internals.png)
+![]("https://github.com/sssingh/tv-script-generation-rnn/blob/master/assets/gru_cell_internals.png?raw=true")
 
 
-![](assets/gru_formula.png)
+![]("https://github.com/sssingh/tv-script-generation-rnn/blob/master/assets/gru_formula.png?raw=true")
 
 - We have defined the network as a subclass of the `nn.Module` Pytorch class.
 - The network architecture is shown below...
 
-![](assets/rnn_network.png)
+![]("https://github.com/sssingh/tv-script-generation-rnn/blob/master/assets/rnn_network.png?raw=true")
 
 - The very first layer of the network is an `Embedding` layer which takes an input vector of size equal to our vocabulary (number of unique words in our training text corpus) and outputs a vector representation of each of the words in the vocabulary. The size of this vector is yet another `hyperparameter` called `embedding dimension` that we define. We have decided to use `300` as the embedding vector size. Note that the vector representation of words is another weight matrix that the embedding layer learns during the training. So an embedding layer is nothing but a giant lookup table of weights where each row corresponds to a unique word in our vocabulary. We look up this table for a given word and extract an `embedding dimension` long vector representation of the word, which is then fed to the next layer in the network. 
 - The next layer is a `GRU` RNN cell that gets word vectors (embedding _dim long) from the embedding layer as input and produces `hidden_dim` long outputs. Here we are using two layers of GRU cell, one stacked on top of the other hence `n_layers` parameter is set to 2.
@@ -227,7 +227,7 @@ Model Trained and Saved
 ### Test the Network
 - Loaded the serialized model and preprocessed data and then generated a _fake_script of 400 words shown below...
 
-![](assets/test_result.png)
+![]("https://github.com/sssingh/tv-script-generation-rnn/blob/master/assets/test_result.png?raw=true")
 
 We can easily see that the _fake_ generated script snippet came from the original TV script; however, it's far from perfect. Multiple characters say (somewhat) complete sentences. All sentences do not make sense, but it doesn't have to be perfect! It takes quite a while and a lot of experimentation and resources to get good results for such a complex task. We can use smaller vocabulary (and discard uncommon words) or get more data to improve outcomes. Still impressive to see how we can get a very trivial network to mimic a human-generated text up to some degree of accuracy with little effort.
 
