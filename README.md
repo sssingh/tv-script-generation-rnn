@@ -1,7 +1,7 @@
 # TV Script Generation using Recurrent Neural Network
 Build and train a Recurrent Neural Network (RNN) based Neural Network to generate fake TV/film script
 
-<img src=assets/title_image.png width=800 height=400>
+<img src=https://github.com/sssingh/tv-script-generation-rnn/blob/master/assets/title_image.png?raw=true width=800 height=400>
 
 ## Features
 ⚡Natural Language Processing (NLP)  
