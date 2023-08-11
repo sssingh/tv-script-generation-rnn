@@ -1,36 +1,74 @@
-# TV Script Generation using Recurrent Neural Network
+# TV Script Generation APP using Recurrent Neural Network
 Build and train a Recurrent Neural Network (RNN) based Neural Network to generate fake TV/film script
 
-<img src="https://github.com/sssingh/tv-script-generation-rnn/blob/master/assets/title_image.png?raw=true" width=800 height=400>
+<img src="https://github.com/sssingh/tv-script-generation-rnn/blob/master/assets/title.png?raw=true" width=800 height=400>
 
-## Features
-⚡Natural Language Processing (NLP)  
-⚡Text Generation  
-⚡Recurrent Neural Network (RNN)  
-⚡Gated Recurrent Unit (GRU)  
-⚡PyTorch
-
-## Table of Contents
-- [Introduction](#introduction) 
-- [Objective](#objective)
-- [Dataset](#dataset)
-- [Solution Approach](#solution-approach)
-- [How To Use](#how-to-use)
-- [License](#license)
-- [Get in touch](#get-in-touch)
-- [Credits](#credits)
-
-## Introduction
 This project will build and train an RNN based neural network to automatically generate our own [Seinfeld](https://en.wikipedia.org/wiki/Seinfeld) _fake_ TV script. We'll use a small subset of the Seinfeld TV sit-com's script from 9 seasons to train our network. The trained network will then generate a new but _fake_ TV script based on patterns it learned from the training data. RNNs are ideally suited for sequence problems such as these since they take advantage of the underlying structure of the data, namely, the order of the data points.
 
 ## Objective
 To build an RNN based Neural Network that'd accept a text corpus (TV/film script, book, etc.), learn from it, and then given a seed `prime-word,` it'd generate a _fake_ text snippet that'd look like if this generated text came from the original script/book. 
 
+Note that even though I have used Seinfeld script to train and generate the text, any other text corpus (tv/film script, books, text corpus) can be used to re-train the model and generate the relevant text.
+
 ## Dataset
 - The dataset used in this project is a subset of the original [Seinfeld dataset](https://www.kaggle.com/thec03u5/seinfeld-chronicles#scripts.csv) on Kaggle.
-- The dataset is provided as part of this repo, and it's kept in `data/Seinfeld_Scripts.txt` as a plain text file.
+- The dataset is provided as part of this repo, and it's kept in `data/Seinfeld_Scripts.txt` as a plain text 
+file.
 
-## Solution Approach
+# App UI Details
+[TODO - Streamlit app details]
+
+# Project Source
+👉 [Visit GitHub Repo](https://github.com/sssingh/tv-script-generation-rnn)
+
+## License
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+
+## Contact Me
+[![website](https://img.shields.io/badge/web_site-8B5BE8?style=for-the-badge&logo=ko-fi&logoColor=white)](https://www.datamatrix-ml.com)
+[![twitter](https://img.shields.io/badge/twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/@thesssingh)
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/sssingh/)
+
+## Credits
+- Dataset used in this project is provided by [Udacity](https://www.udacity.com/)
+- Above dataset is a subset taken from Kaggle, [Seinfeld dataset](https://www.kaggle.com/thec03u5/seinfeld-chronicles#scripts.csv)
+- GRU, RNN diagrams courtesy [Daniel V. Godoy](https://github.com/dvgodoy)
+
+# Appendix
+## Local Installation and Run
+To run the app locally...
+1. Create a conda or virtual environment and activate it
+2. install python 3.11.0 or above
+3. execute below commands from terminal/command-prompt
+```
+git clone https://github.com/sssingh/tv-script-generation-rnn
+cd nlp_ner_summarization_classification
+pip install jupyter
+pip install -r requirements.txt
+streamlit run src/app.py
+```
+
+>NOTE: The model building and training code is in  `notebooks/tv_script_generation.ipynb` jupyter notebook. If you wish to change the model architecture and re-train the network then use this notebook. To train the models, it's recommended to execute the notebook one cell at a time as some steps might take a while to execute. If a GPU is available (recommended), it'll use it automatically; otherwise, training will fall back to the CPU. 
+
+> A fully trained model weights`rnn_model_weights.pt` and preprocessed data (`preprocess.p`) trained on a small subset of Seinfeld script can be downloaded from [here](https://drive.google.com/file/d/1mwyAofz77zb7PIoWlGXArMlLpUrWpWDM/view?usp=sharing) and [here](https://drive.google.com/file/d/1al45-FofQCpnW_fK_vD9pmdK8xqVhKxV/view?usp=sharing) respectively.
+
+Once model and data is downloaded (in same directory where notebook is kept) the TV Script can be generated from the notebook directly, follow below steps...
+
+```python
+    # Load the trained model
+    trained_rnn = load_model('rnn_model_weights.pt')
+    # You can choose a different length
+    gen_length = 400 
+    # You can set the prime word to _any word_ in our dictionary, but it's best to start with a name for generating a TV script.
+    prime_word = 'elaine'
+    # Generate script and print
+    pad_word = SPECIAL_WORDS['PADDING']
+    generated_script = generate(trained_rnn, vocab_to_int[prime_word + ':'], int_to_vocab, token_dict, vocab_to_int[pad_word], gen_length)
+    print(generated_script)
+```
+
+
+## Solution Approach/Technical Details
 ### Load and Explore Data
 - load the Seinfeld TV script `Seinfeld_Scripts.txt` as a text blob
 - Once data is loaded, we play around and explore data to view different script parts. This gives us a sense/structure of the data we'll be working with. For example, it is all lowercase text, and a newline character `\ n separates each new line of dialogue`. We could extract information such as...
@@ -233,43 +271,3 @@ We can easily see that the _fake_ generated script snippet came from the origina
 
 Experiment with different prime-word and different script lengths generates some engaging (and funny) text; give it a try!
 
-## How To Use
-1. Ensure the below-listed packages are installed
-    - `NumPy`
-    - `pickle`
-    - `torch`
-2. Download `tv_script_generation.ipynb` jupyter notebook from this repo
-3. To train the models, it's recommended to execute the notebook one cell at a time as some steps might take a while to execute. If a GPU is available (recommended), it'll use it automatically; otherwise, it'll fall back to the CPU. 
-4. A fully trained model `trained_rnn.pt` and preprocessed data (`preprocess.p`) trained on a small subset of Seinfeld script can be downloaded from [here](https://drive.google.com/file/d/1mwyAofz77zb7PIoWlGXArMlLpUrWpWDM/view?usp=sharing) and [here](https://drive.google.com/file/d/1al45-FofQCpnW_fK_vD9pmdK8xqVhKxV/view?usp=sharing) respectively.
-5. Note that even though we have used Seinfeld script to train and generate the text, you can use any other text corpus (tv/film script, books) to re-train the model and generate the script. You will need to preprocess the data and serialize the data as `preprocess.p` before training the model, though. 
-6. Once we have the model and preprocessed data, we can start generating the script. The network needs to start with a single prime word and repeat its predictions until it reaches a set length. We'll be using the `generate` function to do this. It takes a word id to start with, `prime_id,` and generates a set length of text, `predict_len.` Example code for script generation is shown in the below code snippet...
-
-```python
-    # Load the pre-processed data saved in preprocess.p 
-    _, vocab_to_int, int_to_vocab, token_dict = load_preprocess()
-    # Load the trained model
-    trained_rnn = load_model('trained_rnn')
-    # You can choose a different length
-    gen_length = 400 
-    # You can set the prime word to _any word_ in our dictionary, but it's best to start with a name for generating a TV script.
-    prime_word = 'elaine'
-    # Generate script and print
-    pad_word = SPECIAL_WORDS['PADDING']
-    generated_script = generate(trained_rnn, vocab_to_int[prime_word + ':'], int_to_vocab, token_dict, vocab_to_int[pad_word], gen_length)
-    print(generated_script)
-```
-
-## License
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
-
-## Get in touch
-[![website](https://img.shields.io/badge/web_site-8B5BE8?style=for-the-badge&logo=ko-fi&logoColor=white)](https://www.datamatrix-ml.com)
-[![twitter](https://img.shields.io/badge/twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/@thesssingh)
-[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/sssingh/)
-
-## Credits
-- Dataset used in this project is provided by [Udacity](https://www.udacity.com/)
-- Above dataset is a subset taken from Kaggle, [Seinfeld dataset](https://www.kaggle.com/thec03u5/seinfeld-chronicles#scripts.csv)
-- GRU, RNN diagrams courtesy [Daniel V. Godoy](https://github.com/dvgodoy)
-
-[Back To The Top](#TV-Script-Generation-using-Recurrent-Neural-Network)
