@@ -1,9 +1,12 @@
+
+<img src="https://github.com/sssingh/tv-script-generation-rnn/blob/main/assets/logo.svg?raw=true"/><br><br> 
+
+<a href="https://tv-script-generation-rnn-sssingh.streamlit.app/"  target="_blank"><img src="https://img.shields.io/badge/open_app_in_streamlit-f63366?style=for-the-badge&logo=streamlit&logoColor=black" /></a>
+
 # TV Script Generation APP using Recurrent Neural Network
-Build and train a Recurrent Neural Network (RNN) based Neural Network to generate fake TV/film script
+***This project demonstrates how Recurrent Neural Network (RNN) model can be used to generate synthetic TV/film script***
 
-<img src="https://github.com/sssingh/tv-script-generation-rnn/blob/master/assets/title.png?raw=true" width=800 height=400>
-
-This project will build and train an RNN based neural network to automatically generate our own [Seinfeld](https://en.wikipedia.org/wiki/Seinfeld) _fake_ TV script. We'll use a small subset of the Seinfeld TV sit-com's script from 9 seasons to train our network. The trained network will then generate a new but _fake_ TV script based on patterns it learned from the training data. RNNs are ideally suited for sequence problems such as these since they take advantage of the underlying structure of the data, namely, the order of the data points.
+> This project will build and train an RNN based neural network to automatically generate our own [Seinfeld](https://en.wikipedia.org/wiki/Seinfeld) _fake_ TV script. it uses a small subset of the Seinfeld TV sit-com's script from 9 seasons to train our network. The trained network will then generate a new but synthetic TV script based on patterns it learned from the training data. RNNs are ideally suited for sequence problems such as these since they take advantage of the underlying structure of the data, namely, the order of the data points.
 
 ## Objective
 To build an RNN based Neural Network that'd accept a text corpus (TV/film script, book, etc.), learn from it, and then given a seed `prime-word,` it'd generate a _fake_ text snippet that'd look like if this generated text came from the original script/book. 
@@ -15,9 +18,8 @@ Note that even though I have used Seinfeld script to train and generate the text
 - The dataset is provided as part of this repo, and it's kept in `data/Seinfeld_Scripts.txt` as a plain text 
 file.
 
-# App UI Details
 ## App Details
-App is composed of two tabs, "ABOUT" and "SCRIPT WRITER".
+The `streamlit` based App is composed of two tabs, "ABOUT" and "SCRIPT WRITER".
 
 ### ABOUT
 Provides objective and usage of the app.
@@ -64,7 +66,7 @@ streamlit run src/app.py
 
 >NOTE: The model building and training code is in  `notebooks/tv_script_generation.ipynb` jupyter notebook. If you wish to change the model architecture and re-train the network then use this notebook. To train the models, it's recommended to execute the notebook one cell at a time as some steps might take a while to execute. If a GPU is available (recommended), it'll use it automatically; otherwise, training will fall back to the CPU. 
 
-> A fully trained model weights`rnn_model_weights.pt` and preprocessed data (`preprocess.p`) trained on a small subset of Seinfeld script can be downloaded from [here](https://drive.google.com/file/d/1mwyAofz77zb7PIoWlGXArMlLpUrWpWDM/view?usp=sharing) and [here](https://drive.google.com/file/d/1al45-FofQCpnW_fK_vD9pmdK8xqVhKxV/view?usp=sharing) respectively.
+> A fully trained model weights`rnn_model_weights.pt` and preprocessed data (`preprocess.p`) trained on a small subset of Seinfeld script can be downloaded from [here](https://drive.google.com/file/d/18WBa0B1BHjMFMoVYQcY80oXJCWLKVc74/view?usp=sharing) and [here](https://drive.google.com/file/d/1al45-FofQCpnW_fK_vD9pmdK8xqVhKxV/view?usp=sharing) respectively.
 
 Once model and data is downloaded (in same directory where notebook is kept) the TV Script can be generated from the notebook directly, follow below steps...
 
