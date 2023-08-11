@@ -16,7 +16,21 @@ Note that even though I have used Seinfeld script to train and generate the text
 file.
 
 # App UI Details
-[TODO - Streamlit app details]
+## App Details
+App is composed of two tabs, "ABOUT" and "SCRIPT WRITER".
+
+### ABOUT
+Provides objective and usage of the app.
+
+### SCRIPT WRITER
+Accepts a text prompt/seed (prime-word) and the length (number of words) of the script to be generated. corpus (TV/film script, book, etc.). "Generate" button press will kick-off the scrip generation process to generate a text snippet that'd look like if this generated text came from the original script/book. 
+
+<img src="https://github.com/sssingh/tv-script-generation-rnn/blob/master/assets/writer.png?raw=true" width=800 height=400>
+
+Note that the prime-word must be a word thats present in vocabulary of training text 
+corpus. For reference the vocabulary can be downloaded directly from the writer tab.
+
+Note that even though Seinfeld script is used to train and generate the text, any other text corpus (tv/film script, books, text corpus) can be used to re-train the model and generate the relevant text. There could be multiple use cases where the same text generation technique can be used.
 
 # Project Source
 👉 [Visit GitHub Repo](https://github.com/sssingh/tv-script-generation-rnn)
