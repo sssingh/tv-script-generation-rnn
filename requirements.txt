@@ -1,4 +1,4 @@
 numpy==1.24.*
-pytorch==2.0.*
+torch==2.0.*
 streamlit==1.24.*
 s3fs==2023.4.*
