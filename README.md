@@ -1,7 +1,7 @@
 
 <a href="https://tv-script-generation-rnn-sssingh.streamlit.app/"  target="_blank"><img src="https://img.shields.io/badge/open_app_in_streamlit-f63366?style=for-the-badge&logo=streamlit&logoColor=black" /></a>
 
-<img src="https://github.com/sssingh/tv-script-generation-rnn/blob/master/assets/title.png?raw=true"/ width=1000 height=350><br><br> 
+<img src="https://github.com/sssingh/tv-script-generation-rnn/blob/master/assets/title.png?raw=true width=1000 height=350"/><br><br> 
 
 # TV Script Generation APP using Recurrent Neural Network
 ***This project demonstrates how Recurrent Neural Network (RNN) model can be used to generate synthetic TV/film script***
@@ -27,7 +27,8 @@ Provides objective and usage of the app.
 ### SCRIPT WRITER
 Accepts a text prompt/seed (prime-word) and the length (number of words) of the script to be generated. corpus (TV/film script, book, etc.). "Generate" button press will kick-off the scrip generation process to generate a text snippet that'd look like if this generated text came from the original script/book. 
 
-<img src="https://github.com/sssingh/tv-script-generation-rnn/blob/master/assets/writer.png?raw=true" width=800 height=400>
+<img src="https://github.com/sssingh/tv-script-generation-rnn/blob/master/assets/writer-1.png?raw=true"><br><br>
+<img src="https://github.com/sssingh/tv-script-generation-rnn/blob/master/assets/writer-2.png?raw=true">
 
 Note that the prime-word must be a word thats present in vocabulary of training text 
 corpus. For reference the vocabulary can be downloaded directly from the writer tab.
