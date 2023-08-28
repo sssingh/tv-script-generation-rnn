@@ -32,9 +32,9 @@ class __AppConfig:
     # get current working directory
     cwd = os.getcwd()
     banner_image = f"{cwd}/"
-    logo_image = f"{cwd}/assets/logo.svg"
+    logo_image = f"{cwd}/assets/logo.png"
     app_title = "Script Writer"
-    app_icon = f"{cwd}/assets/title.png"
+    app_icon = f"{cwd}/assets/st_title.png"
     app_short_desc = "Generate TV Script via AI"
     md_about = f"{cwd}/artifacts/about.md"
     processed_data = f"{cwd}/artifacts/preprocess.p"

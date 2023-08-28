@@ -1,8 +1,7 @@
 
->This App showcases a RNN based neural network to automatically generates novel but synthetic TV script fragments based on [Seinfeld](https://en.wikipedia.org/wiki/Seinfeld) sit-com. The model has been trained on a small subset of the Seinfeld TV sit-com's script from 9 seasons. 
-
-
 ## App Details
+>This App showcases a RNN based neural network to automatically generates novel but synthetic TV script fragments based on [Seinfeld](https://en.wikipedia.org/wiki/Seinfeld) sit-com. The model has been trained on a small subset of the Seinfeld TV sit-com's script from 9 seasons.
+
 The App is composed of two tabs, "ABOUT" and "SCRIPT WRITER".
 
 ### ABOUT
@@ -11,7 +10,7 @@ This page, detailing the app usage.
 ### SCRIPT WRITER
 Accepts a text prompt/seed (prime-word) and the length (number of words) of the script to be generated. corpus (TV/film script, book, etc.). "Generate" button press will kick-off the scrip generation process to generate a text snippet that'd look like if this generated text came from the original script/book. 
 
-<img src="https://github.com/sssingh/tv-script-generation-rnn/blob/master/assets/writer.png?raw=true" width=800 height=400>
+<img src="https://github.com/sssingh/tv-script-generation-rnn/blob/master/assets/writer.png?raw=true" width=1000 height=350>
 
 Note that the prime-word must be a word thats present in vocabulary of training text 
 corpus. For reference the vocabulary can be downloaded directly from the writer tab.

@@ -1,9 +1,7 @@
 
-<img src="https://github.com/sssingh/tv-script-generation-rnn/blob/master/assets/logo.svg?raw=true"/><br><br> 
-
 <a href="https://tv-script-generation-rnn-sssingh.streamlit.app/"  target="_blank"><img src="https://img.shields.io/badge/open_app_in_streamlit-f63366?style=for-the-badge&logo=streamlit&logoColor=black" /></a>
 
-<img src="https://github.com/sssingh/tv-script-generation-rnn/blob/master/assets/title.png?raw=true"/><br><br> 
+<img src="https://github.com/sssingh/tv-script-generation-rnn/blob/master/assets/title.png?raw=true"/ width=1000 height=350><br><br> 
 
 # TV Script Generation APP using Recurrent Neural Network
 ***This project demonstrates how Recurrent Neural Network (RNN) model can be used to generate synthetic TV/film script***
